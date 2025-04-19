@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment BonskuyStore</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #1b1e2e;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: #2a2d40;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 350px;
+            text-align: center;
+        }
+        .close {
+            background-color: red;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .copy-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Qris Merchant</h2>
+        
+        <!-- Gambar QRIS -->
+        <img src="https://i.ibb.co.com/S4wYYfZH/IMG-20250330-000739.jpg" alt="QRIS Payment">
+        
+        <h3>Pilih Metode Pembayaran Lain</h3>
+        
+        <!-- Tombol Metode Pembayaran -->
+        <button class="button" onclick="showModal('DANA', '085141316926', 'SOFxxx AFAxxx')">Dana</button>
+        <button class="button" onclick="showModal('GOPAY', '087842862524', 'SOFxxx AFAxxx')">Gopay</button>
+        <button class="button" onclick="showModal('No Rekening BRI', '087842862524', 'SOFIAN AFANDI')">Bank BRI</button>
+    </div>
+
+    <!-- Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <h3 id="paymentTitle"></h3>
+            <p><strong>Nomor:</strong> <span id="paymentNumber"></span></p>
+            <p><strong>A/n:</strong> <span id="paymentName"></span></p>
+            <button class="copy-button" onclick="copyNumber()">Copy Nomor</button>
+            <button class="close" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function showModal(method, number, name) {
+            document.getElementById("paymentTitle").innerText = method;
+            document.getElementById("paymentNumber").innerText = number;
+            document.getElementById("paymentName").innerText = name;
+            document.getElementById("paymentModal").style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("paymentModal").style.display = "none";
+        }
+
+        function copyNumber() {
+            let number = document.getElementById("paymentNumber").innerText;
+            navigator.clipboard.writeText(number).then(() => {
+                alert("Nomor berhasil disalin: " + number);
+            });
+        }
+    </script>
+
+</body>
+</html>
